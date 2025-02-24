@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import SideBarStudent from "../sidebar_student"
 import books from '../assets/books.jpg';
 import { TbAlertCircle, TbArrowBigDown, TbArrowBigUp, TbChartLine, TbClipboardText, TbExternalLink, TbPlus } from "react-icons/tb";
@@ -9,8 +10,32 @@ import { FaRegClock } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { MdMeetingRoom } from "react-icons/md";
 import { FiActivity } from "react-icons/fi";
+import { JitsiMeeting } from "@jitsi/react-sdk";
+import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+
+
+
 
 function Home() {
+  const [isCallActive, setIsCallActive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [reason, setReason] = useState("");
+  const [file, setFile] = useState(null);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = () => {
+    console.log("Reason:", reason);
+    console.log("File:", file);
+    // Handle form submission logic here
+    handleClose();
+  };
   return (
     <div className="flex h-screen ">
 
@@ -86,14 +111,38 @@ function Home() {
                 </div>
 
                 <div className="p-6 space-y-4">
-                  <div className="bg-red-50 p-4 rounded-lg animate-pulse-once">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium text-red-800">Nouvelle absence non justifiée</span>
-                      <button className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm hover:bg-red-200 transition-colors">
-                        Justifier
-                      </button>
-                    </div>
-                  </div>
+                <div className="flex justify-between items-center">
+      <span className="font-medium text-red-800">Nouvelle absence non justifiée</span>
+      <button 
+        onClick={handleOpen} 
+        className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm hover:bg-red-200 transition-colors"
+      >
+        Justifier
+      </button>
+
+      {/* Justification Dialog */}
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+        <DialogTitle>
+          Justifier une absence
+          <IconButton onClick={handleClose} style={{ position: "absolute", right: 10, top: 10 }}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <textarea
+            placeholder="Expliquez la raison de votre absence..."
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            className="w-full p-2 border rounded-md"
+          />
+          <input type="file" onChange={handleFileChange} className="mt-3 w-full" />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary">Annuler</Button>
+          <Button onClick={handleSubmit} color="primary" variant="contained">Soumettre</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
 
                   <div className="border-l-4 border-gray-200 pl-4 relative group">
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-gray-400 rounded-full -ml-1.5"></div>
@@ -176,10 +225,44 @@ function Home() {
                           <p className="text-lg font-bold text-[#388388]">1h45</p>
                         </div>
                       </div>
-                      <button className="bg-gradient-to-r from-[#388388] to-[#45a0a0] hover:from-[#45a0a0] hover:to-[#388388] text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105">
-                        <BsFillCameraVideoFill className="text-xl"/>
-                        <span className="font-semibold">Rejoindre</span>
-                      </button>
+                      <div>
+      {/* Join Call Button */}
+      <button
+        className="bg-gradient-to-r from-[#388388] to-[#45a0a0] hover:from-[#45a0a0] hover:to-[#388388] text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105"
+        onClick={() => setIsCallActive(true)}
+      >
+        <BsFillCameraVideoFill className="text-xl" />
+        <span className="font-semibold">Rejoindre</span>
+      </button>
+
+      {/* Dialog for Jitsi Meeting */}
+      <Dialog
+        open={isCallActive}
+        onClose={() => setIsCallActive(false)}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle className="flex justify-between items-center">
+          <span className="text-lg font-semibold">Appel Vidéo</span>
+          <IconButton onClick={() => setIsCallActive(false)}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+
+        <DialogContent>
+          <JitsiMeeting
+            roomName="MyVideoCallRoom"
+            getIFrameRef={(iframe) => (iframe.style.height = "500px")}
+          />
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={() => setIsCallActive(false)} color="secondary" variant="contained">
+            Quitter l'appel
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
                     </div>
                   </div>
 
