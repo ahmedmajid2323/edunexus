@@ -13,21 +13,19 @@ EduNexus est une plateforme d'apprentissage en ligne qui lie les apprenants avec
 - **Profil** : Consultez et modifiez votre profil accessible par les autres utilisateurs de la plateforme.
 
 ## Technologies utilisées
-- **Frontend** : HTML, CSS, TypeScript, JavaScript
-- **Backend** : Node.js, Python, React, RAG, Docker
+- **Frontend** : HTML, CSS, JavaScript, React, Vite
+- **Backend** : Node.js, langchain, express
 - **Base de données** : ChromaDB
-- **Authentification** : Firebase Auth / OAuth
-- **Déploiement** : Vercel / AWS / Netlify
+- **Déploiement** : Docker 
 
 ## Installation
 ### Prérequis
 - Node.js installé
-- Firebase ou MongoDB configuré
 
 ### Étapes
 1. Cloner le dépôt :
    ```bash
-   git clone clone https://github.com/ahmedmajid2323/edunexus.git
+   git clone https://github.com/ahmedmajid2323/edunexus.git
    cd EduNexus
    ```
 2. Installer les dépendances :
@@ -36,14 +34,13 @@ EduNexus est une plateforme d'apprentissage en ligne qui lie les apprenants avec
    ```
 3. Configurer les variables d'environnement dans un fichier `.env` :
    ```
-   DATABASE_URL=votre_base_de_donnees
-   AUTH_SECRET=votre_cle_secrete
+   GROQ_API_KEY=votre_cle_secrete_de_groq
    ```
 4. Démarrer le serveur de développement :
    ```bash
    npm start
    ```
-5. Accéder à la plateforme à `http://localhost:5137`
+5. Accéder à la plateforme à `http://localhost:5173`
 
 ## Contribution
 1. Forker le dépôt.
