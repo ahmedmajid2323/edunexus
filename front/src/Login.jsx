@@ -1,4 +1,4 @@
-import { useState } from 'react';
+{ useState } from 'react';
 import logo from './assets/edunexux.png'
 import {Form, Input, Button} from "@heroui/react";
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ function Login() {
 
             <div className='flex flex-col  '>
                 <div className=' h-32 flex items-center justify-center border-b-2 mx-5' >
-                    <h1 className="text-[#000000] text-center text-4xl font-bold drop-shadow-lg">Login to your account</h1>
+                    <h1 className="text-[#000000] text-center text-4xl font-bold drop-shadow-lg">Bienvenue</h1>
                 </div>
                 <div className=' h-full flex justify-center items-center'>
                 <Form
@@ -33,32 +33,33 @@ function Login() {
 
                 }}>
 
-                    <Input className=' mb-7'
-                        isRequired
-                        errorMessage="Please enter a valid email"
-                        label="Email"
-                        labelPlacement="outside"
-                        name="email"
-                        placeholder="Enter your email"
-                        type="email"
-                    />
+                 <Input className='mb-7'
+                 isRequired
+                 errorMessage="Veuillez entrer une adresse e-mail valide"
+                 label="E-mail"
+                 labelPlacement="outside"
+                  name="email"
+                  placeholder="Entrez votre adresse e-mail"
+                 type="email"
+                />
 
-                    <Input className=' mb-7'
-                        isRequired
-                        errorMessage="Please enter a valid email"
-                        label="Password"
-                        labelPlacement="outside"
-                        name="Password"
-                        placeholder="Enter your password"
-                        type="Password"
-                    />          
+                 <Input className='mb-7'
+                  isRequired
+                  errorMessage="Veuillez saisir votre mot de passe"
+                  label="Mot de passe"
+                 labelPlacement="outside"
+                  name="motDePasse"
+                 placeholder="Entrez votre mot de passe"
+                 type="password"
+                />
+ 
                     
                     <div className="flex gap-2">
                         <Button className='bg-[#74DFA2]' type="submit">
-                        Submit
+                        Confirmer
                         </Button>
                         <Button type="reset" variant="flat">
-                        Reset
+                        Réinitialiser
                         </Button>
                     </div>
 
