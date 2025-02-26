@@ -1,8 +1,44 @@
-# React + Vite
+# Edunexus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est une plateforme de gestion académique permettant aux utilisateurs (étudiants et enseignants) de gérer leurs cours, projets, notes et absences de manière intuitive.
 
-Currently, two official plugins are available:
+## Fonctionnalités principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Authentification
+- Connexion via email et mot de passe.
+- Sécurisation des données des utilisateurs.
+
+### 2. Sidebar (Menu de navigation)
+- Accueil
+- Cours
+- Mes projets
+- Mes notes
+- Profil
+
+### 3. Accueil
+- Affichage des prochaines séances.
+- Suivi des absences.
+- Évolution des projets.
+- Séances en ligne avec un bouton pour rejoindre directement la réunion.
+- Affichage des notes et moyennes des examens.
+
+### 4. Cours
+- Accès aux cours en format PDF.
+- Résumés des cours.
+- Chatbot éducatif facilitant la compréhension des cours.
+
+### 5. Mes Projets
+- Liste des projets existants.
+- Suivi des tâches complétées.
+- Dates limites des projets.
+- Membres des équipes.
+- Option pour créer un nouveau projet.
+
+### 6. Mes Notes
+- Consultation des notes obtenues.
+- Ajout de remarques personnelles.
+
+### 7. Profil
+- Informations personnelles de l'utilisateur.
+- Dernières absences enregistrées.
+- Prochaines séances planifiées.
