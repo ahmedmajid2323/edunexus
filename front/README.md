@@ -1,44 +1,53 @@
 # Edunexus
 
-Ce projet est une plateforme de gestion académique permettant aux utilisateurs (étudiants et enseignants) de gérer leurs cours, projets, notes et absences de manière intuitive.
+Une plateforme complète pour gérer les activités académiques (cours, projets, notes, absences) avec une interface intuitive et des fonctionnalités intelligentes.
 
-## Fonctionnalités principales
+## Fonctionnalités Clés 🚀
 
-### 1. Authentification
-- Connexion via email et mot de passe.
-- Sécurisation des données des utilisateurs.
+### 1. Authentification Sécurisée 🔒
+- **Connexion** via email et mot de passe.
+- **Sécurité** : Chiffrement des mots de passe (bcrypt) et tokens JWT.
+- Protection des routes avec middleware d'authentification.
 
-### 2. Sidebar (Menu de navigation)
-- Accueil
-- Cours
-- Mes projets
-- Mes notes
-- Profil
+### 2. Navigation via Sidebar 🗂️
+- **Sections Accessibles** :
+  - Accueil 🏠
+  - Cours 📚
+  - Mes Projets 📂
+  - Mes Notes 📊
+  - Profil 👤
 
-### 3. Accueil
-- Affichage des prochaines séances.
-- Suivi des absences.
-- Évolution des projets.
-- Séances en ligne avec un bouton pour rejoindre directement la réunion.
-- Affichage des notes et moyennes des examens.
+---
 
-### 4. Cours
-- Accès aux cours en format PDF.
-- Résumés des cours.
-- Chatbot éducatif facilitant la compréhension des cours.
+### 3. Tableau de Bord (Accueil) 🎯
+- **Prochaines Séances** : Liste des cours à venir (matière, heure, salle).
+- **Suivi des Absences** : Visualisation des absences/motifs sur un calendrier.
+- **Progression des Projets** : Graphiques d'avancement (barres/pourcentages).
+- **Séances en Direct** : Bouton "Rejoindre la Réunion" (intégration Zoom/Google Meet).
+- **Résultats d'Examen** : Notes par matière + calcul automatique des moyennes.
 
-### 5. Mes Projets
-- Liste des projets existants.
-- Suivi des tâches complétées.
-- Dates limites des projets.
-- Membres des équipes.
-- Option pour créer un nouveau projet.
+### 4. Gestion des Cours 📑
+- **Bibliothèque de PDF** : Téléchargement et prévisualisation des cours.
+- **Résumés Intelligents** : Synthèses générées par IA (ex: ChatGPT).
+- **Chatbot Éducatif** : 
+  - Réponses instantanées aux questions sur les cours.
+  - Exemples de requêtes : "Explique les théorèmes de Pythagore", "Donne un exercice sur Java".
 
-### 6. Mes Notes
-- Consultation des notes obtenues.
-- Ajout de remarques personnelles.
+### 5. Espace Projets 🛠️
+- **Liste des Projets** : Filtrage par statut (en cours/terminé/urgent).
+- **Gestion des Tâches** : 
+  - Checklist interactives avec % de complétion.
+  - Assignation des tâches aux membres.
+- **Dates Limites** : Notifications 3 jours avant l'échéance.
+- **Création de Projet** : Formulaire avec titre, description, membres, pièces jointes.
 
-### 7. Profil
-- Informations personnelles de l'utilisateur.
-- Dernières absences enregistrées.
-- Prochaines séances planifiées.
+### 6. Module de Notes 🧮
+- **Relevé de Notes** : Affichage par matière/semestre (diagrammes en radar).
+- **Journal de Remarques** : Notes personnelles privées (ex: "Réviser le chapitre 5").
+
+### 7. Profil Utilisateur 🌟
+- **Informations** : Photo, nom, email, filière.
+- **Historique** : 
+  - 5 dernières absences avec justificatifs.
+  - Prochaines séances (triées par date).
+- **Édition** : Mise à jour du mot de passe ou de la photo.
