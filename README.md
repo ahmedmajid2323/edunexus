@@ -14,8 +14,8 @@ EduNexus est une plateforme d'apprentissage en ligne qui lie les apprenants avec
 
 ## Technologies utilisées
 - **Frontend** : HTML, CSS, TypeScript, JavaScript
-- **Backend** : Node.js, Python, React, RAG
-- **Base de données** : Firebase / MongoDB
+- **Backend** : Node.js, Python, React, RAG, Docker
+- **Base de données** : ChromaDB
 - **Authentification** : Firebase Auth / OAuth
 - **Déploiement** : Vercel / AWS / Netlify
 
