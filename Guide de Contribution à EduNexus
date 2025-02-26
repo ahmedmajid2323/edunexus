@@ -1,0 +1,63 @@
+# Guide de Contribution à EduNexus
+
+Merci de votre intérêt pour EduNexus ! Voici comment vous pouvez contribuer au projet.
+
+## 1. Pré-requis
+Avant de contribuer, assurez-vous d’avoir :
+- Un compte GitHub
+- Git installé sur votre machine
+- Node.js et npm installés
+- Accès au dépôt EduNexus : [GitHub Repo](https://github.com/ahmedmajid2323/edunexus.git)
+
+## 2. Comment Contribuer ?
+
+### a) Fork et Clone du projet
+1. Forkez le dépôt sur GitHub.
+2. Clonez votre fork localement :
+   ```bash
+   git clone https://github.com/votre-utilisateur/edunexus.git
+   cd edunexus
+   ```
+
+### b) Création d'une Branche
+Créez une nouvelle branche pour vos modifications :
+```bash
+git checkout -b feature-nom-de-la-fonctionnalité
+```
+
+### c) Développement et Tests
+- Ajoutez/modifiez le code.
+- Vérifiez que le projet fonctionne en local.
+- Exécutez les tests (s’il y en a) :
+  ```bash
+  npm test
+  ```
+
+### d) Commit et Push
+1. Ajoutez vos modifications :
+   ```bash
+   git add .
+   ```
+2. Faites un commit avec un message clair :
+   ```bash
+   git commit -m "Ajout de [fonctionnalité]"
+   ```
+3. Poussez vos modifications vers votre fork :
+   ```bash
+   git push origin feature-nom-de-la-fonctionnalité
+   ```
+
+### e) Création d'une Pull Request
+1. Allez sur le dépôt GitHub principal.
+2. Cliquez sur "New Pull Request".
+3. Sélectionnez votre branche et soumettez votre PR.
+4. Attendez la revue et les retours.
+
+## 3. Bonnes Pratiques
+- **Respectez le style de code** : Suivez les conventions utilisées dans le projet.
+- **Commentez votre code** : Expliquez les parties complexes.
+- **Rédigez des tests** : Vérifiez que vos modifications ne cassent rien.
+- **Soyez clair** : Indiquez l'objectif de vos modifications dans vos commits et PRs.
+
+Merci pour votre contribution ! 🚀
+
