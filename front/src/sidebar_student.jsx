@@ -13,7 +13,7 @@ function SideBarStudent() {
 
   // Array of links for mapping through the sidebar items
   const sidebarLinks = [
-    { path: '/', label: 'Acceuil', icon: <FaHome  color="white" /> },
+    { path: '/home', label: 'Acceuil', icon: <FaHome  color="white" /> },
     { path: '/cours', label: 'Cours', icon: <IoDocument color="white" /> },
     { path: '/projects', label: 'Mes projets', icon: <FaUsers color="white" /> },
     { path: '/note', label: 'Mes notes', icon: <PiNotepadBold  color="white" /> },
@@ -29,7 +29,7 @@ function SideBarStudent() {
         boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 10px 15px -3px rgba(0, 0, 0, 0.7)",
         overflow: 'hidden' // Prevent scrolling
     }}>
-      <img src={edunexux} className=' ' />
+      <img src={edunexux} />
 
       <div className="mt-10 flex flex-col justify-around gap-7">
         {sidebarLinks.map((link) => {

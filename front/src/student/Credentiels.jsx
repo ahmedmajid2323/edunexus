@@ -1,12 +1,14 @@
 import React from 'react';
 import SideBarStudent from "../sidebar_student";
+import books from '../assets/books.jpg';
+import patron from '../assets/patron.jpeg';
 
 function Credentials() {
   // Sample student data
   const student = {
     id: "ST12345",
-    name: "Jane Smith",
-    email: "jane.smith@university.edu",
+    name: "El Patron",
+    email: "El_Patron@supcom.tn",
     program: "Computer Science",
     year: 3,
     gpa: 3.8,
@@ -44,17 +46,18 @@ function Credentials() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <SideBarStudent />
+
+      <SideBarStudent className="flex-shrink-0 h-screen overflow-y-auto" />
       
-      <div className="flex-1">
+      <div className=" overflow-y-auto w-full h-screen p-2 flex-row justify-center items-center">
         {/* Header Banner */}
-        <div className="bg-cover bg-center h-32 relative" style={{ backgroundImage: "url('/api/placeholder/1200/300')" }}>
-          <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-white">Profile</h1>
-          </div>
+        <div className="  rounded-xl items-center justify-center flex relative h-28 " 
+        style={{backgroundImage:`url(${books})`,backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}}>
+          <div className="absolute inset-0 bg-[#388388] bg-opacity-30 rounded-xl"></div>
+          <h1 className="text-white text-4xl font-bold drop-shadow-lg">Profile</h1>
         </div>
         
-        <div className="p-6">
+        <div className=" pt-3">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Profile Information */}
             <div className="bg-white rounded-md shadow-sm overflow-hidden">
@@ -64,8 +67,7 @@ function Credentials() {
               <div className="p-4">
                 <div className="flex items-center mb-4">
                   <div className="mr-4">
-                    <img 
-                      src="/api/placeholder/100/100" 
+                    <img src={patron}
                       alt="Profile" 
                       className="w-16 h-16 rounded-full"
                     />

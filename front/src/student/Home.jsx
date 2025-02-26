@@ -14,9 +14,6 @@ import { JitsiMeeting } from "@jitsi/react-sdk";
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-
-
-
 function Home() {
   const [isCallActive, setIsCallActive] = useState(false);
   const [open, setOpen] = useState(false);
@@ -46,8 +43,8 @@ function Home() {
         <div className=" grid grid-rows-[1fr_5fr] h-full gap-2">
           <div className="  rounded-xl items-center justify-center flex relative h-28 " 
           style={{backgroundImage:`url(${books})`,backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}}>
-            <div className="absolute inset-0 bg-[#388388] bg-opacity-50 rounded-xl"></div>
-            <h1 className=" relative z-10 text-white text-5xl font-semibold ">Acceuil</h1>
+            <div className="absolute inset-0 bg-[#388388] bg-opacity-30 rounded-xl"></div>
+            <h1 className="text-white text-4xl font-bold drop-shadow-lg">Acceuil</h1>
           </div>
 
           <div className="grid grid-cols-[5fr_1fr] gap-2">

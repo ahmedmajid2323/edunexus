@@ -26,7 +26,7 @@ const client = new ChromaClient({ path: "http://localhost:8000" });
 async function initializeChromaDB() {
     try {
         const collections = await client.listCollections();
-        console.log("✅ Connected to ChromaDB. Available collections:", collections.map(c => c.name));
+        console.log("✅ Connected to ChromaDB. Available collections:", collections );
     } catch (error) {
         console.error("❌ Failed to connect to ChromaDB:", error);
     }
@@ -51,10 +51,10 @@ app.post("/summarization", async (req, res) => {
 const resetChromaDB = async (req, res, next) => {
     try {
         const collections = await client.listCollections();
-        const collectionNames = collections.map(c => c.name);
 
-        if (collectionNames.includes("rag_zc")) {
-            await client.deleteCollection("rag_zc");
+        if (collections.includes("rag_zc")) {
+            const collection = await client.getCollection({ name: "rag_zc" });
+            await client.deleteCollection(collection);
             console.log("🗑 Deleted existing ChromaDB collection 'rag_zc'.");
         }
 

@@ -1,14 +1,22 @@
-import React, { useState } from "react";
-import { TbClipboardText, TbAlertCircle } from "react-icons/tb";
-import { FaRegClock, FaRegUser, FaPlus, FaTasks, FaUsers } from "react-icons/fa";
-import { MdMeetingRoom } from "react-icons/md";
-import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import  { useState } from "react";
+import { TbAlertCircle, TbPlus, TbUpload, TbCalendar, TbFolder, TbUsers, TbChecklist, TbStack2 } from "react-icons/tb";
 import books from '../assets/books.jpg';
 import SideBarStudent from "../sidebar_student";
-import Chart from 'react-apexcharts';
+import {parseDate} from "@internationalized/date";
+import {Button, Calendar} from "@heroui/react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/react";
 
 const Dashboard1 = () => {
+
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
   const [open, setOpen] = useState(false);
   const [reason, setReason] = useState("");
   const [file, setFile] = useState(null);
@@ -195,183 +203,248 @@ const Dashboard1 = () => {
   ];
 
   return (
-    <div className="flex h-screen">
-      {/* Main Content */}
-      <SideBarStudent />
-      <div className="overflow-y-auto w-full h-screen p-2 flex-row justify-center items-center">
-        <div className="grid grid-rows-[1fr_5fr] h-full gap-2">
-          {/* Header Section */}
-          <div className="rounded-xl items-center justify-center flex relative h-28" style={{ backgroundImage: `url(${books})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-            <div className="absolute inset-0 bg-[#388388] bg-opacity-50 rounded-xl"></div>
-            <h1 className="relative z-10 text-white text-5xl font-semibold">Projects</h1>
+    <div className="flex h-screen bg-[#f8fafc]">
+  <SideBarStudent className="flex-shrink-0 h-screen overflow-y-auto" />
+  
+  {/* Main Content */}
+  <div className=" overflow-y-auto w-full h-screen p-2 flex-row justify-center items-center">
+
+  <div className=" mb-3 rounded-xl items-center justify-center flex relative h-28 " 
+    style={{backgroundImage:`url(${books})`,backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}}>
+      <div className="absolute inset-0 bg-[#388388] bg-opacity-30 rounded-xl"></div>
+      <h1 className="text-white text-4xl font-bold drop-shadow-lg">Projects</h1>
+    </div>
+
+    {/* Header Stats */}
+    <div className="grid grid-cols-1 pb-3 md:grid-cols-4 gap-6">
+      <div className="bg-gradient-to-br from-white to-[#f0fdfa] p-6 rounded-3xl shadow-sm border border-[#e2e8f0] hover:shadow-md transition-all">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-[#64748b]">Active Projects</p>
+            <p className="text-3xl font-bold text-[#0f172a] mt-2">12</p>
           </div>
-
-          {/* Main Grid */}
-          <div className="grid grid-cols-[3fr_1fr] gap-2">
-            {/* Left Column */}
-            <div className="rounded-xl grid grid-rows-2 gap-2">
-              {/* Projects List */}
-              <div className="bg-white shadow-lg shadow-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="bg-[#388388] h-20 rounded-t-xl flex items-center justify-center relative">
-                  <h1 className="text-white text-xl font-semibold tracking-tight">Projects</h1>
-                  <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#5ab0b0] to-[#388388]"></div>
-                </div>
-                <div className="p-6 space-y-4">
-                  {projects.map((project) => (
-                    <div
-                      key={project.id}
-                      className="group relative bg-white p-4 rounded-lg border-l-4 border-[#388388] hover:border-[#5ab0b0] transition-all duration-200 hover:scale-[101%] cursor-pointer"
-                      onClick={() => handleProjectClick(project)}
-                    >
-                      <div className="flex items-center space-x-3 relative">
-                        <div className="bg-[#388388] p-2 rounded-full">
-                          <TbClipboardText className="h-5 w-5 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-gray-800">{project.name}</h3>
-                          <p className="text-gray-600">Deadline: {project.deadline}</p>
-                        </div>
-                      </div>
-                      <div className="mt-2 flex items-center space-x-2 text-sm text-gray-500">
-                        <span>Progress: {project.progress}%</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Task Progress Section */}
-              <div className="bg-white shadow-lg shadow-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="bg-[#388388] h-20 rounded-t-xl flex items-center justify-center relative">
-                  <h1 className="text-white text-xl font-semibold tracking-tight">Task Progress</h1>
-                  <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#5ab0b0] to-[#388388]"></div>
-                </div>
-                <div className="p-6 space-y-4">
-                  {selectedProject && selectedProject.tasks.map((task, index) => (
-                    <div key={index} className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="bg-[#388388] p-2 rounded-full">
-                            <FaTasks className="h-5 w-5 text-white" />
-                          </div>
-                          <div>
-                            <h3 className="font-semibold text-gray-800">{task.name}</h3>
-                            <p className="text-gray-600">Assigned to: {task.assignedTo}</p>
-                          </div>
-                        </div>
-                        <div className="w-1/3 bg-gray-200 rounded-full h-2.5">
-                          <div
-                            className="bg-[#388388] h-2.5 rounded-full"
-                            style={{ width: `${task.progress}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Project Details Popup */}
-              {selectedProject && (
-                <Dialog open={!!selectedProject} onClose={() => setSelectedProject(null)} fullWidth maxWidth="sm">
-                  <DialogTitle>
-                    {selectedProject.name}
-                    <IconButton onClick={() => setSelectedProject(null)} style={{ position: "absolute", right: 10, top: 10 }}>
-                      <CloseIcon />
-                    </IconButton>
-                  </DialogTitle>
-                  <DialogContent>
-                    <p className="text-gray-600">{selectedProject.description}</p>
-                    <h4 className="font-semibold mt-4">Team Members</h4>
-                    <ul className="list-disc list-inside">
-                      {selectedProject.team.map((member, index) => (
-                        <li key={index}>{member}</li>
-                      ))}
-                    </ul>
-                    <h4 className="font-semibold mt-4">Tasks</h4>
-                    <ul className="list-disc list-inside">
-                      {selectedProject.tasks.map((task, index) => (
-                        <li key={index}>{task.name} - {task.progress}%</li>
-                      ))}
-                    </ul>
-                  </DialogContent>
-                </Dialog>
-              )}
-            </div>
-
-            {/* Right Column (Charts and Quick Access) */}
-            {/* Quick Access Section */}
-            <div className="bg-white shadow-lg shadow-slate-200 rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="bg-[#388388] h-20 rounded-t-xl flex items-center justify-center relative">
-                  <h1 className="text-white text-xl font-semibold tracking-tight">Quick Actions</h1>
-                  <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#5ab0b0] to-[#388388]"></div>
-                </div>
-                <div className="p-6 space-y-4">
-                  <button
-                    onClick={handleAddProject}
-                    className="w-full flex items-center justify-center space-x-2 bg-[#388388] text-white px-4 py-2 rounded-lg hover:bg-[#5ab0b0] transition-colors"
-                  >
-                    <FaPlus className="h-5 w-5" />
-                    <span>Add Project</span>
-                  </button>
-                  <button className="w-full flex items-center justify-center space-x-2 bg-[#388388] text-white px-4 py-2 rounded-lg hover:bg-[#5ab0b0] transition-colors">
-                    <TbAlertCircle className="h-5 w-5" />
-                    <span>Report Issue</span>
-                  </button>
-                </div>
-              </div>
-            <div className="rounded-xl grid grid-rows-2 gap-2">
-              {/* Chart 1: Project Progress */}
-              <div className="bg-white shadow-lg shadow-slate-200 rounded-xl p-6">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">Project Progress</h2>
-                <Chart
-                  options={progressChartOptions}
-                  series={progressChartSeries}
-                  type="radialBar"
-                  height={350}
-                />
-              </div>
-
-              {/* Chart 2: Task Completion */}
-              <div className="bg-white shadow-lg shadow-slate-200 rounded-xl p-6">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">Task Completion</h2>
-                <Chart
-                  options={taskChartOptions}
-                  series={taskChartSeries}
-                  type="bar"
-                  height={350}
-                />
-              </div>
-
-              
-            </div>
+          <div className="w-12 h-12 bg-[#388388] rounded-xl flex items-center justify-center">
+            <TbStack2 className="text-white w-6 h-6" />
           </div>
         </div>
       </div>
 
-      {/* Justification Dialog */}
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>
-          Justifier une absence
-          <IconButton onClick={handleClose} style={{ position: "absolute", right: 10, top: 10 }}>
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent>
-          <textarea
-            placeholder="Expliquez la raison de votre absence..."
-            value={reason}
-            onChange={(e) => setReason(e.target.value)}
-            className="w-full p-2 border rounded-md"
-          />
-          <input type="file" onChange={handleFileChange} className="mt-3 w-full" />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="secondary">Annuler</Button>
-          <Button onClick={handleSubmit} color="primary" variant="contained">Soumettre</Button>
-        </DialogActions>
-      </Dialog>
+      <div className="bg-gradient-to-br from-white to-[#f0fdfa] p-6 rounded-3xl shadow-sm border border-[#e2e8f0] hover:shadow-md transition-all">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-[#64748b]">Tasks Completed</p>
+            <p className="text-3xl font-bold text-[#0f172a] mt-2">84%</p>
+          </div>
+          <div className="w-12 h-12 bg-[#5ab0b0] rounded-xl flex items-center justify-center">
+            <TbChecklist className="text-white w-6 h-6" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-white to-[#f0fdfa] p-6 rounded-3xl shadow-sm border border-[#e2e8f0] hover:shadow-md transition-all">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-[#64748b]">Upcoming Deadlines</p>
+            <p className="text-3xl font-bold text-[#0f172a] mt-2">3</p>
+          </div>
+          <div className="w-12 h-12 bg-[#388388] rounded-xl flex items-center justify-center">
+            <TbAlertCircle className="text-white w-6 h-6" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-white to-[#f0fdfa] p-6 rounded-3xl shadow-sm border border-[#e2e8f0] hover:shadow-md transition-all">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm text-[#64748b]">Team Members</p>
+            <p className="text-3xl font-bold text-[#0f172a] mt-2">8</p>
+          </div>
+          <div className="w-12 h-12 bg-[#5ab0b0] rounded-xl flex items-center justify-center">
+            <TbUsers className="text-white w-6 h-6" />
+          </div>
+        </div>
+      </div>
     </div>
+
+    {/* Main Content Grid */}
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-3">
+      {/* Project Gallery */}
+      <div className="lg:col-span-2 space-y-6">
+        <div className=" flex justify-between">
+        <h2 className="text-2xl font-bold text-[#0f172a]">Project Gallery</h2>
+        <Button onPress={onOpen}
+        className=" p-2 bg-gradient-to-br from-[#388388] to-[#5ab0b0] hover:cursor-pointer hover:scale-90 duration-400 rounded-xl gap-2 flex items-center justify-center">
+          <TbPlus className="text-white w-6 h-6" />
+          <h1 className=" text-white font-semibold drop-shadow-lg">add new project</h1>
+        </Button>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <div key={project.id} className="group relative bg-white p-6 rounded-2xl shadow-sm border border-[#e2e8f0] hover:shadow-lg transition-all">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-[#0f172a]">{project.name}</h3>
+                  <p className="text-sm text-[#64748b] mt-2">{project.deadline}</p>
+                  <div className="mt-4 flex items-center space-x-2">
+                    <div className="flex -space-x-2">
+                      {project.team.map((member, index) => (
+                        <img 
+                          key={index}
+                          src={member.avatar} 
+                          className="w-8 h-8 rounded-full border-2 border-white" 
+                          alt={member.name} 
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="w-14 h-14 bg-gradient-to-br from-[#388388] to-[#5ab0b0] rounded-xl flex items-center justify-center">
+                  <TbFolder className="text-white w-6 h-6" />
+                </div>
+              </div>
+              <div className="mt-6">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm text-[#64748b]">Progress</span>
+                  <span className="text-sm font-medium text-[#388388]">{project.progress}%</span>
+                </div>
+                <div className="h-2 bg-[#e2e8f0] rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-[#388388] to-[#5ab0b0] transition-all duration-500" 
+                    style={{ width: `${project.progress}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right Sidebar */}
+      <div className="space-y-8">
+        {/* Progress Chart */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border flex justify-center items-center border-[#e2e8f0]">
+          <div>
+            <h3 className="text-lg text-center font-semibold text-[#0f172a] mb-4">Deadlines</h3>
+            <Calendar color="danger" aria-label="Date (Uncontrolled)" defaultValue={parseDate("2025-02-03")} />
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#e2e8f0] space-y-4">
+          <h3 className="text-lg font-semibold text-[#0f172a]">Quick Actions</h3>
+          <button className="w-full flex items-center justify-between p-4 bg-[#f8fafc] hover:bg-[#f1f5f9] rounded-xl transition-colors">
+            <span className="text-[#0f172a]">New Project</span>
+            <TbPlus className="text-[#388388] w-5 h-5" />
+          </button>
+          <button className="w-full flex items-center justify-between p-4 bg-[#f8fafc] hover:bg-[#f1f5f9] rounded-xl transition-colors">
+            <span className="text-[#0f172a]">Upload File</span>
+            <TbUpload className="text-[#388388] w-5 h-5" />
+          </button>
+          <button className="w-full flex items-center justify-between p-4 bg-[#f8fafc] hover:bg-[#f1f5f9] rounded-xl transition-colors">
+            <span className="text-[#0f172a]">Schedule Meeting</span>
+            <TbCalendar className="text-[#388388] w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+  <ModalContent>
+    {(onClose) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1">
+          <h2 className="text-2xl font-bold text-gray-800">Create New Project</h2>
+          <p className="text-sm text-gray-500">Fill in the details to add a new project</p>
+        </ModalHeader>
+        <ModalBody>
+          <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Project Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter project name"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Deadline <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  required
+                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Team Members
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter names separated by commas"
+                />
+                <p className="text-xs text-gray-500 mt-1">e.g., John, Sarah, Mike</p>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Project Description <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                required
+                rows={3}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Describe the project goals and objectives..."
+              />
+            </div>
+          </form>
+        </ModalBody>
+        <ModalFooter className="flex justify-between">
+          <Button 
+            color="secondary" 
+            variant="bordered" 
+            onPress={onClose}
+            className="hover:bg-gray-50"
+          >
+            Cancel
+          </Button>
+          <Button  
+            onPress={() => {
+              // Add your form submission logic here
+              const newProject = {
+                id: projects.length + 1,
+                name: "New Project Name", // Get from form state
+                deadline: "New Deadline", // Get from form state
+                progress: 0, // Start at 0%
+                team: ["Team", "Members"], // Get from form state
+                tasks: [],
+                description: "Project Description" // Get from form state
+              };
+              
+              setProjects([...projects, newProject]);
+              onClose();
+            }}
+            className="bg-gradient-to-br from-[#388388] to-[#5ab0b0] text-white font-medium">
+            Create Project
+          </Button>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
+
+</div>
   );
 };
 

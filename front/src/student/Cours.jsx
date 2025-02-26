@@ -118,8 +118,8 @@ function Cours() {
 
           <div className="  rounded-xl items-center justify-center flex relative h-28 " 
           style={{backgroundImage:`url(${books})`,backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}}>
-            <div className="absolute inset-0 bg-[#388388] bg-opacity-50 rounded-xl"></div>
-            <h1 className=" relative z-10 text-white text-5xl font-semibold ">Supports du cours</h1>
+            <div className="absolute inset-0 bg-[#388388] bg-opacity-30 rounded-xl"></div> 
+            <h1 className="text-white text-4xl font-bold drop-shadow-lg">Support de cours</h1>
           </div>
 
           <div className="bg-slate-100 shadow-sm shadow-slate-400 rounded-xl grid grid-cols-[5fr_2fr]">

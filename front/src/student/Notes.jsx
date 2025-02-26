@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SideBarStudent from "../sidebar_student";
 import { Search, Plus, Trash2, Edit, Save, X, Calendar, BookOpen } from "lucide-react";
+import books from '../assets/books.jpg';
 
 function Notes() {
   const [notes, setNotes] = useState([
@@ -64,17 +65,17 @@ function Notes() {
 
   return (
     <div className="flex h-screen">
-      <SideBarStudent />
+      <SideBarStudent className="flex-shrink-0 h-screen overflow-y-auto" />
 
-      <div className="flex flex-col w-full bg-gray-50">
+      <div className=" overflow-y-auto w-full h-screen p-2 flex-row justify-center items-center ">
         {/* Header Banner */}
-        <div className="w-full h-32 bg-cover bg-center" style={{ backgroundImage: 'url("/api/placeholder/1400/300")' }}>
-          <div className="w-full h-full flex items-center justify-center bg-teal-600/80">
-            <h1 className="text-4xl font-bold text-white">Notes</h1>
-          </div>
+        <div className="  rounded-xl items-center justify-center flex relative h-28 " 
+        style={{backgroundImage:`url(${books})`,backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}}>
+          <div className="absolute inset-0 bg-[#388388] bg-opacity-30 rounded-xl"></div>
+          <h1 className="text-white text-4xl font-bold drop-shadow-lg">Notes</h1>
         </div>
 
-        <div className="flex flex-col p-5 gap-6">
+        <div className="flex flex-col pt-3 gap-6">
           {/* Main content area */}
           <div className="flex gap-6">
             {/* Notes list */}

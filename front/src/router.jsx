@@ -5,12 +5,13 @@ import Credentiels from "./student/Credentiels";
 import Notes from "./student/Notes";
 import Progress from "./student/Progress";
 import Dashboard1 from "./student/Dashboard1";
+import Login from "./Login";
 
 
 
 const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/home",
       element: <Home/>,
     },
     {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
     {
       path: "/progress",
       element: <Progress/>,
+    },
+    {
+      path: "/",
+      element: <Login/>,
     },
   ]);
 
