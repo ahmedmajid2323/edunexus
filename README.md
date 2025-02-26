@@ -27,7 +27,7 @@ EduNexus est une plateforme d'apprentissage en ligne qui lie les apprenants avec
 ### Étapes
 1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/ahmedmajid2323/project_zc.git
+   git clone clone https://github.com/ahmedmajid2323/edunexus.git
    cd EduNexus
    ```
 2. Installer les dépendances :
@@ -43,7 +43,7 @@ EduNexus est une plateforme d'apprentissage en ligne qui lie les apprenants avec
    ```bash
    npm start
    ```
-5. Accéder à la plateforme à `http://localhost:3000`
+5. Accéder à la plateforme à `http://localhost:5137`
 
 ## Contribution
 1. Forker le dépôt.
