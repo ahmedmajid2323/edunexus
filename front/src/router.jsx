@@ -2,9 +2,10 @@ import {createBrowserRouter} from "react-router-dom";
 import Home from "./student/Home";
 import Cours from "./student/Cours";
 import Credentiels from "./student/Credentiels";
-import Project from "./student/Project";
 import Notes from "./student/Notes";
 import Progress from "./student/Progress";
+import Dashboard1 from "./student/Dashboard1";
+
 
 
 const router = createBrowserRouter([
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
     },
     {
       path: "/projects",
-      element: <Project/>,
+      element: <Dashboard1 />,
     },
     {
       path: "/progress",

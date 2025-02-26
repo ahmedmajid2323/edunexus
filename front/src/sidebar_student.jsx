@@ -17,10 +17,10 @@ function SideBarStudent() {
     { path: '/cours', label: 'Cours', icon: <IoDocument color="white" /> },
     { path: '/projects', label: 'Mes projets', icon: <FaUsers color="white" /> },
     { path: '/note', label: 'Mes notes', icon: <PiNotepadBold  color="white" /> },
-    { path: '/progress', label: 'avancement', icon: <GiProgression color="white" /> },
+    
     { path: '/credentiels', label: 'Profile', icon: <CgProfile color="white" /> },
   ];
-
+  // { path: '/progress', label: 'avancement', icon: <GiProgression color="white" /> },
   return (
     <div 
     className="w-[18%] bg-[#388388] shadow-md p-5 rounded-2xl m-2 flex-col justify-center"
